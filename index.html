@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <meta charset="utf-8">
+    <title>ghosthub games</title>
+    <style> 
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .header{
+            padding: 1px;
+        }
+        .column {
+            flex: 1;
+            display: flex;
+            padding: 1px;
+            flex-direction: column;
+            
+        }
+        .footer {
+            color: #fff; 
+            text-align: right; 
+            padding: 10px;
+            font-size: 6px; 
+            font-weight: 50px; 
+            margin-top: 500px;
+
+        }
+    </style>
+</head>
+<body>
+    <header>
+            <h1>GhostHub Games</h1>
+            <p>Your only objective is to harvest every living soul.</p>
+    </header>
+    <div class="container">
+        <div class="column">
+            <h2>Tips & Tricks</h2>
+            <p2>Purchase Auto Spookers to increase spooks automatically</p2>
+            <p2>Level up to get bonus Spooks and Souls</p2>
+            </div>
+
+        <div class ="column">
+            <h2>Shop</h2>
+            <p>Auto Spookers: <a id="auto">0</a>
+            <br>Auto Spookers+: <a id="hitech">0</a></p>
+            <button1 id="autoSpookerButton" onclick="purchaseAutoSpooker()">Purchase Auto Spooker<br>(-100 spooks)</button1>
+            <button12 id="autoSpookerButton" onclick="purchaseHitechAutoSpooker()">Purchase Auto Spooker+<br>(-1000 spooks)</button12>
+            <button2 id="harvestSoulsButton" onclick="unlockHarvestSouls()">Purchase Soul Harvester<br>(-100,000 spooks)</button2>
+        </div>
+        <div class="column">
+            <h2>Spook</h2>
+            <img src="C:\Users\jessi\vs code\html test\images\ghost-img.png">
+            <h2>Lifeforms Spooked: <a id="spooks">0</a>
+            <br>Souls Harvested: <a id="souls">0</a></h2>
+            <button id="spookButton">Spook</button>
+            <p>Spooks Per Second: <a id="spooksPerSecond">0.0</a>
+            <br>Souls Per Second: <a id="soulsPerSecond">0.0</a></p>
+        </div>
+        <div class="column">
+            <h2>Levels & EXP</h2>
+            <p>Rank: <span id="ranks">Novice Ghost</span><br>Next rank unlocked at <span id="ranksUnlockedAt">0</span></p>
+            <p2>Level: <span id="level">1</span><br>EXP: <span id="exp">0</span></p2>
+        </div>
+        <div class="column">
+            <h2>Necromancy</h2>
+            <p>Posses lifeforms to help you with your work</p>
+            <button id = "catButton" onclick="addCat()">Posess a cat</button>
+            <button id = "humanButton" onclick="addCat()">Posess a human</button>
+            <button id = "townButton" onclick ="addTown()">Posess a small town</button>
+            <button id = "cityButton" onclick ="addCity()">Posess a city</button>
+            <button id = "contientButton" onclick ="addContinent()">Posess a continent</button>
+            <button id = "planetButton" onclick ="addPlanet()">Posess a planet</button>
+            <button id = "solarsysButton" onclick ="addSolarSys()">Posess a solar system</button>
+            <button id = "galaxyButton" onclick ="addGalaxy()">Posess a galaxy</button>
+        </div>
+    </div>
+</body>
+<footer>
+    <p>by entropicghost</p>
+</footer> 
+</html>
+
+<script>
+    var button = document.getElementById("spookButton");
+    var spooks = 0;
+    var souls = 0;
+    var level = 1;
+    var exp = 0;
+    var buffSouls = 0;
+    var buffSpooks = 0;
+    var ranks = ["Novice Ghost", "Apprentice Ghost", "Intermediate Ghost", "Grim Reaper"];
+    var ranksUnlockedAt = ["Level 25", "Level 50", "Level 75", "Level 100"];
+    var harvestSoulsPerSecond = 0;
+    var autoSpookers = 0;
+    var autoSpookerInterval = null;
+    var hitechAutoSpookers = 0;
+    var hitechAutoSpookersInterval = null;
+    var spooksPerSecond = 0;
+
+    setInterval(updateSpooksPerSecond, 1000);
+
+    function updateRank(){
+        document.getElementById("level").innerHTML = level;
+        document.getElementById("exp").innerHTML = exp;
+        var currentRank = ranks
+        document.getElementById("ranks").innerHTML = currentRank;
+}
+
+    function gainExp(amount){
+        exp += amount;
+        updateRank();
+    }
+
+    function onClick() {
+        spooks += 1;
+        spooksPerSecond += 1;
+        document.getElementById("spooks").innerHTML = spooks;
+        document.getElementById("spooksPerSecond").innerHTML = spooksPerSecond.toFixed(1);
+    }
+
+    button.addEventListener("click", onClick);
+
+    function updateSpooksPerSecond() {
+    spooksPerSecond = autoSpookers + (hitechAutoSpookers * 10);
+    document.getElementById("spooksPerSecond").innerHTML = spooksPerSecond.toFixed(1);
+}
+
+    function addAutoSpookers(){
+        spooks += 1 * autoSpookers;
+        document.getElementById("spooks").innerHTML = spooks;
+        document.getElementById("auto").innerHTML = autoSpookers;
+        updateSpooksPerSecond();
+    }
+    function purchaseAutoSpooker(){
+        if (spooks>= 50){
+            spooks -= 50;
+            autoSpookers += 1;
+            document.getElementById("spooks").innerHTML = spooks;
+            document.getElementById("auto").innerHTML = autoSpookers;
+            
+            if(autoSpookerInterval === null){
+                autoSpookerInterval = setInterval(addAutoSpookers, 1000);
+                updateSpooksPerSecond();
+            }
+        } else {
+            alert("Not enough spooks to purchase, go spook some more lifeforms");
+        }
+    }
+
+
+    function addHitechAutoSpooker(){
+        spooks += 1 * hitechAutoSpookers;
+        document.getElementById("spooks").innerHTML = spooks;
+        document.getElementById("hitech").innerHTML = hitechAutoSpookers;
+        updateSpooksPerSecond();
+    }
+    function purchaseHitechAutoSpooker(){
+        if (spooks>= 1000){
+            spooks -= 1000;
+            hitechAutoSpookers += 1;
+            document.getElementById("spooks").innerHTML = spooks;
+            document.getElementById("hitech").innerHTML = hitechAutoSpookers;
+            
+        if(hitechAutoSpookersInterval === null){
+            hitechAutoSpookers = setInterval(addHitechAutoSpooker, 1000);
+            updateSpooksPerSecond();
+        }
+    } else {
+        alert("Not enough spooks");
+    }
+    }
+
+    function startSoulHarvesting(){
+        setInterval(function(){
+            souls += harvestSoulsPerSecond;
+            document.getElementById("souls").innerHTML = souls.toFixed(1);
+        }, 1000);
+    }
+
+    function unlockHarvestSouls(){
+        if (spooks >= 100000){
+            spooks -= 100000;
+            harvestSoulsPerSecond += 1;
+            souls += 0.1;
+            gainExp(1);
+            document.getElementById("exp").innerHTML = exp;
+            document.getElementById("souls").innerHTML = souls;
+            document.getElementById("soulsPerSecond").innerHTML = harvestSoulsPerSecond.toFixed(0.1);
+
+            startSoulHarvesting();
+        }else{
+            alert("Not enough spooks");
+        }
+    }
+
+    function catButton(){
+        if (souls>= 1000, spooks=>100000){
+            souls -= 1000;
+            spooks -= 100000;
+            harvestSoulsPerSecond = harvestSoulsPerSecond * 1.25;
+            spooksPerSecond = spooksPerSecond * 1.25;
+            document.getElementById("souls").innerHTML = souls;
+            document.getElementById("soulsPerSecond");
+        }
+    }
+</script>

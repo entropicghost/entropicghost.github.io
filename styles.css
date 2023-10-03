@@ -1,0 +1,122 @@
+body {
+    background-color: rgb(206, 205, 205);
+}
+h1{
+    margin-top: 17px;
+    text-align: center;
+    color: rgb(41, 47, 98);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 25px;
+}
+h2{
+    margin-top: 10px;
+    text-align: center;
+    color: rgb(41, 47, 98);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 20px;
+}
+p{
+    text-align: center;
+    color: rgb(38, 31, 83);
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+.container{
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto;
+    display: block;
+    padding-bottom: 15px;
+    
+}
+button{
+    background-color: #0b0114;
+    color: rgb(204, 204, 204);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    padding: 13px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+button1{
+    
+    background-color: #7c5d9a9c;
+    color: rgb(204, 204, 204);
+    border: 1px solid #2d0379;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    display: block;
+    margin: 0 auto;
+}
+
+button12{
+    
+    background-color: #7c5d9a9c;
+    color: rgb(204, 204, 204);
+    border: 1px solid #2d0379;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 15.27px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+button2{
+    background-color: #692b2b9c;
+    color: rgb(204, 204, 204);
+    border: 1px solid #2d0379;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14.75px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px;
+    display: block;
+    margin: 0 auto;
+    
+}
+
+h2{
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: rgb(38, 31, 83);
+    font-size: 17px;
+}
+
+footer{
+    margin-bottom: 0 auto;
+    
+}
+p1{
+    text-align: center;
+    margin-top: 10px;
+    align-items: center;
+
+}
+p2{
+   text-align: center;
+   align-items: center; 
+}
