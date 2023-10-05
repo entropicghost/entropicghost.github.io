@@ -65,58 +65,21 @@ button1{
     font-size: 16px;
     font-weight: bold;
     text-align: center;
-    padding: 15px;
+    padding: 10px;
     display: block;
     margin: 0 auto;
 }
 
-button12{
-    
-    background-color: #7c5d9a9c;
-    color: rgb(204, 204, 204);
-    border: 1px solid #2d0379;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 15.27px;
-    font-weight: bold;
-    text-align: center;
-    padding: 15px;
-    display: block;
-    margin: 0 auto;
-}
-
-
-button2{
-    background-color: #692b2b9c;
-    color: rgb(204, 204, 204);
-    border: 1px solid #2d0379;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14.75px;
-    font-weight: bold;
-    text-align: center;
-    padding: 15px;
-    display: block;
-    margin: 0 auto;
-    
-}
-
-h2{
+h3{
     text-align: center;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    color: rgb(38, 31, 83);
+    color: rgb(29, 25, 56);
     font-size: 17px;
+    background-color: #ffffff; 
+    padding: 25px;
 }
 
 footer{
     margin-bottom: 0 auto;
     
-}
-p1{
-    text-align: center;
-    margin-top: 10px;
-    align-items: center;
-
-}
-p2{
-   text-align: center;
-   align-items: center; 
 }
