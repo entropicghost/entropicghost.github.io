@@ -5,31 +5,6 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <meta charset="utf-8">
     <title>ghosthub games</title>
-    <style> 
-        .container {
-            display: flex;
-            justify-content: space-between;
-        }
-        .header{
-            padding: 1px;
-        }
-        .column {
-            flex: 1;
-            display: flex;
-            padding: 1px;
-            flex-direction: column;
-            
-        }
-        .footer {
-            color: #fff; 
-            text-align: right; 
-            padding: 10px;
-            font-size: 6px; 
-            font-weight: 50px; 
-            margin-top: 500px;
-
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -58,14 +33,14 @@
             <img src=images/ghost-img.png>
 
             <h3>Lifeforms Spooked: <a id="spooks">0</a>
-            <br><button id="spookButton">Spook</button>
+            <button id="spookButton" onclick="spookButtonClick()">Spook</button>
             <br>
             <br>Spooks Per Second: <a id="spooksPerSecond">0.0</a></h3>
 
             <p><br></p>
 
             <h3>Souls Harvested: <a id="souls">0</a>
-            <br><button id="soulButton">Harvest</button>
+            <button id="soulButton" onclick="soulsButtonClick()">Harvest</button>
             <br>
             <br>Souls Per Second: <a id="soulsPerSecond">0.0</a></h3>
 
@@ -104,7 +79,7 @@
     var buffSpooks = 0;
     var ranks = ["Novice Ghost", "Apprentice Ghost", "Intermediate Ghost", "Grim Reaper"];
     var ranksUnlockedAt = ["Level 25", "Level 50", "Level 75", "Level 100"];
-    var harvestSoulsPerSecond = 0;
+    var soulsPerSecond = 0;
     var autoSpookers = 0;
     var autoSpookerInterval = null;
     var hitechAutoSpookers = 0;
@@ -125,14 +100,26 @@
         updateRank();
     }
 
-    function onClick() {
-        spooks += 1;
-        spooksPerSecond += 1;
-        document.getElementById("spooks").innerHTML = spooks;
-        document.getElementById("spooksPerSecond").innerHTML = spooksPerSecond.toFixed(1);
+    function spookButtonClick() {
+    spooks += 1;
+    spooksPerSecond += 1;
+    document.getElementById("spooks").innerHTML = spooks;
+    document.getElementById("spooksPerSecond").innerHTML = spooksPerSecond.toFixed(1);
+}
+
+    function soulsButtonClick(){
+        if (hitechAutoSpookers>=10){
+            souls += 1;
+            soulsPerSecond += 1;
+            document.getElementById("souls").innerHTML = souls;
+            document.getElementById("soulsPerSecond").innerHTML = soulsPerSecond.toFixed(1);
+        
+        } else {
+            alert("Spook more lifeforms first");
+        }
     }
 
-    button.addEventListener("click", onClick);
+    
 
     function updateSpooksPerSecond() {
     spooksPerSecond = autoSpookers + (hitechAutoSpookers * 10);
@@ -149,6 +136,7 @@
         if (spooks>= 50){
             spooks -= 50;
             autoSpookers += 1;
+            gainExp(500);
             document.getElementById("spooks").innerHTML = spooks;
             document.getElementById("auto").innerHTML = autoSpookers;
             
@@ -172,6 +160,7 @@
         if (spooks>= 1000){
             spooks -= 1000;
             hitechAutoSpookers += 1;
+            gainExp(2);
             document.getElementById("spooks").innerHTML = spooks;
             document.getElementById("hitech").innerHTML = hitechAutoSpookers;
             
@@ -186,7 +175,7 @@
 
     function startSoulHarvesting(){
         setInterval(function(){
-            souls += harvestSoulsPerSecond;
+            souls += soulsPerSecond;
             document.getElementById("souls").innerHTML = souls.toFixed(1);
         }, 1000);
     }
@@ -194,12 +183,12 @@
     function unlockHarvestSouls(){
         if (spooks >= 100000){
             spooks -= 100000;
-            harvestSoulsPerSecond += 1;
+            soulsPerSecond += 1;
             souls += 0.1;
             gainExp(1);
             document.getElementById("exp").innerHTML = exp;
             document.getElementById("souls").innerHTML = souls;
-            document.getElementById("soulsPerSecond").innerHTML = harvestSoulsPerSecond.toFixed(0.1);
+            document.getElementById("soulsPerSecond").innerHTML = soulsPerSecond.toFixed(0.1);
 
             startSoulHarvesting();
         }else{
@@ -211,7 +200,7 @@
         if (souls>= 1000, spooks=>100000){
             souls -= 1000;
             spooks -= 100000;
-            harvestSoulsPerSecond = harvestSoulsPerSecond * 1.25;
+            soulsPerSecond = soulsPerSecond * 1.25;
             spooksPerSecond = spooksPerSecond * 1.25;
             document.getElementById("souls").innerHTML = souls;
             document.getElementById("soulsPerSecond");
